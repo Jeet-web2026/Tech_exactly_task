@@ -15,6 +15,10 @@ Route::controller(AuthController::class)->group(function () {
 
     // Logout route
     Route::get('signout', 'logout')->name('signout');
+
+    Route::get('/login', function () {
+        return redirect()->route('home');
+    })->name('login');
 });
 
 require __DIR__ . '/dashboard.php';

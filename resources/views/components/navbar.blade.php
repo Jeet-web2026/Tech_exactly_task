@@ -29,7 +29,7 @@
                     <i class="ri-shut-down-line text-black"></i>
                     <span class="text-base text-black font-medium">Signout</span>
                 </a>
-                <a href="{{ route( Auth::user()->user_type . '.' .'dashboard') }}" class="ms-2 border px-3 py-1 rounded border-gray-300">
+                <a href="javascript:void(0)" class="ms-2 border px-3 py-1 rounded border-gray-300">
                     <span class="text-base text-black font-medium">{{ Auth::user()->fname[0] }}</span>
                 </a>
                 @endauth

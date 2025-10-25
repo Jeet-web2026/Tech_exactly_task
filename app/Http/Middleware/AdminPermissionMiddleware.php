@@ -17,7 +17,7 @@ class AdminPermissionMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->type === 'admin') {
+            if (Auth::user()->user_type === 'admin') {
                 return $next($request);
             }
             return redirect()->back()->with('error', 'Access denied!');

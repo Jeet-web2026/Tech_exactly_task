@@ -12,9 +12,8 @@ Route::controller(DashboardController::class)->group(function () {
         // Admin dashboard routes
         Route::middleware('allowAdmin')->group(function () {
             Route::get('admin', 'adminDashboard')->name('admin.dashboard');
+            Route::get('all-posts', 'adminPosts')->name('admin.posts');
+            Route::get('users', 'adminUsers')->name('admin.users');
         });
-
-        // User dashboard routes
-        Route::get('user', 'Dashboard')->name('user.dashboard');
     });
 });

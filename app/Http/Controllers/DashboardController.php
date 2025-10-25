@@ -13,9 +13,8 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('user'));
     }
 
-    public function Dashboard()
+    public function adminPosts()
     {
-        $user = User::where('user_type', 'user')->count();
-        return view('user.dashboard', compact('user'));
+        return view('admin.post');
     }
 }
