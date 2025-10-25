@@ -220,5 +220,4 @@
 
     </section>
     {{---subscription section--}}
-
 </x-BaseComponent>
