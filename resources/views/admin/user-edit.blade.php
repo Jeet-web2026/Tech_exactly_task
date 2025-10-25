@@ -42,8 +42,8 @@
                         </td>
                         <td class="px-6 py-3 w-3/4 text-black border-r border-gray-200">
                             <select name="" id="" class="w-full border border-gray-300 rounded px-3 py-2 outline-none">
-                                <option value="active" {{ $userDetail->status ?  }}>Active</option>
-                                <option value="banned">Banned</option>
+                                <option value="active" @if($userDetail->status == 'active') selected @endif>Active</option>
+                                <option value="banned" @if($userDetail->status == 'banned') selected @endif>Banned</option>
                             </select>
                         </td>
                     </tr>
@@ -51,8 +51,15 @@
                         <td class="px-6 py-3 font-medium w-1/4 text-gray-900 whitespace-nowrap text-black border-r border-gray-200">
                             Permissions
                         </td>
-                        <td class="px-6 py-3 w-3/4 text-black border-r border-gray-200">
-                            <input type="text" value="{{ $userDetail->created_at }}" class="w-full border border-gray-300 rounded px-3 py-2 outline-none">
+                        <td class="px-6 py-3 w-3/4 text-black border-r border-gray-200 flex flex-row gap-6">
+                            <div class="flex flex-row items-center gap-2">
+                                <input type="checkbox" class="h-4 outline-none" id="can-post" @if(isset($userDetail->permissions['post']) && $userDetail->permissions['post'] == 1) checked @endif>
+                                <label>Can post</label>
+                            </div>
+                            <div class="flex flex-row items-center gap-2">
+                                <input type="checkbox" class="h-4 outline-none" id="can-comment" @if(isset($userDetail->permissions['comment']) && $userDetail->permissions['comment'] == 1) checked @endif>
+                                <label>Can comment</label>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

@@ -30,7 +30,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'status' => 'active',
-            'permissions' => ['post' => 1, 'comment' => 1, 'like' => 1],
+            'permissions' => ['post' => 1, 'comment' => 1],
         ]);
 
         if ($user) {
