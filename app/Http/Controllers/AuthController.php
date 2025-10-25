@@ -38,16 +38,26 @@ class AuthController extends Controller
         return redirect()->back()->with('error', 'Registration failed. Please try again.');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(Request $request): RedirectResponse|View
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
-            $redirector = LoginRedirectFactory::make($user->type);
-
-            return $redirector->redirect();
+            if ($user->user_type == 'admin') {
+                $redirector = LoginRedirectFactory::make($user->user_type);
+                return $redirector->redirect();
+            }
+            return redirect()->route('home');
         }
         return redirect()->back()->with('error', 'Invalid credentials!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        session()->invalidate();
+        session()->regenerateToken();
+
+        return back()->with('success', 'Logged out successfully!');
     }
 }

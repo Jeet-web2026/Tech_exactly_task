@@ -5,7 +5,7 @@
             <div class="main-view-content md:col-span-2">
                 <div class="relative rounded overflow-hidden shadow-lg">
                     <div class="w-full shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-123 object-cover">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-125 object-cover">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
                         <p class="text-sm uppercase tracking-widest text-gray-300 mb-2">Software</p>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="relative rounded overflow-hidden shadow-lg">
                     <div class="w-full shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-123 object-cover">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-125 object-cover">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
                         <p class="text-sm uppercase tracking-widest text-gray-300 mb-2">Software</p>

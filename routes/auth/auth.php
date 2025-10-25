@@ -12,4 +12,9 @@ Route::controller(AuthController::class)->group(function () {
     // User authentication routes
     Route::post('register', 'register')->name('user.register');
     Route::post('login', 'login')->name('user.login');
+
+    // Logout route
+    Route::get('signout', 'logout')->name('signout');
 });
+
+require __DIR__ . '/dashboard.php';
