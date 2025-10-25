@@ -28,7 +28,9 @@ class AuthController extends Controller
             'fname' => $request->firstname,
             'lname' => $request->lastname,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
+            'status' => 'active',
+            'permissions' => ['post' => 1, 'comment' => 1, 'like' => 1],
         ]);
 
         if ($user) {

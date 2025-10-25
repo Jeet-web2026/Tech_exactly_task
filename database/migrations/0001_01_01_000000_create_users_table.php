@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('status')->default('active');
+            $table->json('permissions')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

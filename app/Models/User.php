@@ -17,6 +17,8 @@ class User extends Authenticatable
         'lname',
         'email',
         'password',
+        'status',
+        'permissions'
     ];
 
     protected $hidden = [
@@ -27,6 +29,15 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
+            'permissions' => 'array',
         ];
+    }
+
+    public function getAttribute($key)
+    {
+        if ($key === 'created_at' && isset($this->attributes[$key])) {
+            return date('d-m-Y, H:m', strtotime($this->attributes[$key]));
+        }
+        return parent::getAttribute($key);
     }
 }
