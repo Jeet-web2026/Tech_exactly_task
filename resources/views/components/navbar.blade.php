@@ -19,7 +19,7 @@
                     <i class="ri-search-2-line text-black font-medium"></i>
                 </button>
                 @guest
-                <a href="" class="ms-2 border px-3 py-1 rounded border-gray-300">
+                <a href="{{ route('signup') }}" class="ms-2 border px-3 py-1 rounded border-gray-300">
                     <i class="ri-user-3-line text-black"></i>
                     <span class="text-base text-black font-medium">Signup</span>
                 </a>
