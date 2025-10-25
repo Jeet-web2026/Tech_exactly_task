@@ -5,4 +5,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('signup', 'signup')->name('signup');
+    Route::get('signin', 'signin')->name('signin');
 });
