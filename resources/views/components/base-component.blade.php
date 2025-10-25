@@ -39,7 +39,17 @@
     </style>
 </head>
 
-<body>
+<body class="relative">
+    @if(session()->has('error'))
+    <div class="bg-red-200 text-red-800 px-4 py-2 w-100 text-center flex justify-center items-center rounded mb-4 font-medium text-xl fixed top-[15%] z-50 left-[35%] error-popup">
+        <i class="ri-error-warning-line me-1 text-2xl"></i>{{ session('error') }}
+    </div>
+    @endif
+    @if(session()->has('success'))
+    <div class="bg-green-200 text-green-800 px-4 py-2 w-100 text-center flex justify-center items-center rounded mb-4 font-medium text-xl fixed top-[15%] z-50 left-[35%] success-popup">
+        <i class="ri-checkbox-circle-line me-1 text-2xl"></i>{{ session('success') }}
+    </div>
+    @endif
     <x-NavBar />
     {{ $slot }}
     <x-Footer />
