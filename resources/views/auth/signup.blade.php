@@ -17,23 +17,30 @@
                     <div class="flex flex-row items-center gap-3 mb-3">
                         <div class="flex flex-col">
                             <p class="text-lg text-black font-medium">First name</p>
-                            <input type="text" class="border py-1.5 rounded border-gray-400 outline-none px-2" wire:model="firstname" value="{{ old('firstname') }}">
+                            <input type="text" class="border py-1.5 rounded border-gray-400 outline-none px-2" name="firstname" value="{{ old('firstname') }}">
                             @error('firstname')
                             <span class="text-red-800 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="flex flex-col">
                             <p class="text-lg text-black font-medium">Last name</p>
-                            <input type="text" class="border py-1.5 rounded border-gray-400 outline-none px-2" wire:model.blur="lastname" value="{{ old('lastname') }}">
+                            <input type="text" class="border py-1.5 rounded border-gray-400 outline-none px-2" name="lastname" value="{{ old('lastname') }}">
                             @error('lastname')
                             <span class="text-red-800 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="mb-8">
+                    <div class="mb-3">
                         <p class="text-lg text-black font-medium">Email Id</p>
-                        <input type="email" class="border py-1.5 rounded border-gray-400 outline-none px-2 w-full" wire:model.blur="email" value="{{ old('email') }}">
+                        <input type="email" class="border py-1.5 rounded border-gray-400 outline-none px-2 w-full" name="email" value="{{ old('email') }}">
                         @error('email')
+                        <span class="text-red-800 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-lg text-black font-medium">Password</p>
+                        <input type="password" class="border py-1.5 rounded border-gray-400 outline-none px-2 w-full" name="password" value="{{ old('password') }}">
+                        @error('password')
                         <span class="text-red-800 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
