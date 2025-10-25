@@ -1,23 +1,43 @@
-<x-BaseComponent tailwindcss="true" title="Home" remixicon="true">
+<x-BaseComponent tailwindcss="true" title="Home" remixicon="true" slick="true">
     {{--main landing secton--}}
     <main class="flex justify-center items-center h-screen pt-24 bg-gray-100">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-            <div class="md:col-span-2 relative rounded overflow-hidden shadow-lg">
-                <div class="w-full shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-123 object-cover">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
-                    <p class="text-sm uppercase tracking-widest text-gray-300 mb-2">Software</p>
-                    <h2 class="text-3xl font-bold text-white mb-3">Running macOS and Windows 10 on the Same Computer</h2>
-                    <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
-                        <span class="flex items-center gap-1">
-                            <i class="ri-user-3-line"></i>
-                            akbarh
-                        </span>
-                        <span>July 7, 2021</span>
-                        <span>No Comments</span>
+            <div class="main-view-content md:col-span-2">
+                <div class="relative rounded overflow-hidden shadow-lg">
+                    <div class="w-full shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-123 object-cover">
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">Cursus iaculis etiam in in nullam donec sem sed consequat scelerisque nibh amet, massa egestas risus, gravida vel amet, imperdiet ...</p>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
+                        <p class="text-sm uppercase tracking-widest text-gray-300 mb-2">Software</p>
+                        <h2 class="text-3xl font-bold text-white mb-3">Running macOS and Windows 10 on the Same Computer</h2>
+                        <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
+                            <span class="flex items-center gap-1">
+                                <i class="ri-user-3-line"></i>
+                                akbarh
+                            </span>
+                            <span>July 7, 2021</span>
+                            <span>No Comments</span>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">Cursus iaculis etiam in in nullam donec sem sed consequat scelerisque nibh amet, massa egestas risus, gravida vel amet, imperdiet ...</p>
+                    </div>
+                </div>
+                <div class="relative rounded overflow-hidden shadow-lg">
+                    <div class="w-full shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Blog Image" class="w-full h-123 object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
+                        <p class="text-sm uppercase tracking-widest text-gray-300 mb-2">Software</p>
+                        <h2 class="text-3xl font-bold text-white mb-3">Running macOS and Windows 10 on the Same Computer</h2>
+                        <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
+                            <span class="flex items-center gap-1">
+                                <i class="ri-user-3-line"></i>
+                                akbarh
+                            </span>
+                            <span>July 7, 2021</span>
+                            <span>No Comments</span>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">Cursus iaculis etiam in in nullam donec sem sed consequat scelerisque nibh amet, massa egestas risus, gravida vel amet, imperdiet ...</p>
+                    </div>
                 </div>
             </div>
             <div class="space-y-6 bg-white p-5 rounded shadow-lg">

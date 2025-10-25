@@ -1,4 +1,4 @@
-<header class="fixed w-full top-0 left-0 z-50 bg-white shadow-md">
+<header class="fixed w-full top-0 left-0 z-50 bg-gray-50 shadow-md">
     <nav role="navigation" class="py-4 relative max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row items-center justify-between">
             <a href="/" class="flex flex-row items-center gap-3">
