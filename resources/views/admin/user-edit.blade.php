@@ -41,7 +41,10 @@
                             Status
                         </td>
                         <td class="px-6 py-3 w-3/4 text-black border-r border-gray-200">
-                            <input type="text" value="{{ $userDetail->created_at }}" class="w-full border border-gray-300 rounded px-3 py-2 outline-none">
+                            <select name="" id="" class="w-full border border-gray-300 rounded px-3 py-2 outline-none">
+                                <option value="active" {{ $userDetail->status ?  }}>Active</option>
+                                <option value="banned">Banned</option>
+                            </select>
                         </td>
                     </tr>
                     <tr class="bg-white dark:bg-gray-100 border-b border-gray-200 text-base">
