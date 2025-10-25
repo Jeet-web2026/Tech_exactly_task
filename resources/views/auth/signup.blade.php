@@ -2,7 +2,7 @@
     <main class="h-screen w-full bg-gray-100">
         <div class="container mx-auto h-full flex justify-center flex-col items-center gap-8 relative">
             <a href="{{ url('/') }}" wire:navigate class="absolute top-8 left-0 px-4 py-2 bg-blue-900 rounded shadow text-white"><i class="ri-arrow-left-long-line text-white me-1"></i>Back</a>
-            <form>
+            <form action="{{ route('user.register') }}" method="post">
                 @csrf
                 <div class="shadow p-8 bg-white rounded border border-gray-200">
                     <h2 class="uppercase text-2xl bg-gray-500 text-white py-3 font-semibold text-center mb-8 border rounded">Signup</h2>
