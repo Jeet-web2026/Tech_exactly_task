@@ -50,10 +50,12 @@ class DashboardController extends Controller
     public function Userdelete(int $uid): RedirectResponse
     {
         $user = User::findOrFail($uid);
+        $user->posts()->delete();
         $user->delete();
         $totalPages = ceil(User::count() / 6);
         for ($i = 1; $i <= $totalPages; $i++) {
             Cache::forget('admin_users_page_' . $i);
+            Cache::forget('admin_posts_page_' . $i);
         }
         return back()->with('success', 'User deleted successfully.');
     }
