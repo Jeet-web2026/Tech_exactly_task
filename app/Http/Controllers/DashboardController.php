@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
@@ -27,6 +28,10 @@ class DashboardController extends Controller
         $posts = Cache::remember($cacheKey, now()->addMinutes(10), function () {
             return Post::with('user')
                 ->paginate(5);
+        });
+        $posts->getCollection()->transform(function ($post) {
+            $post->content = Str::limit($post->content, 110);
+            return $post;
         });
         return view('admin.post', compact('posts'));
     }
@@ -75,5 +80,13 @@ class DashboardController extends Controller
             return redirect()->back()->with('error', 'Failed to update user details.');
         }
         return redirect()->back()->with('success', 'User details updated successfully.');
+    }
+
+    public function adminPostView(string $slug): View
+    {
+        $post = Cache::remember("user_post_{$slug}", now()->addMinutes(10), function () use ($slug) {
+            return Post::where('slug', $slug)->firstOrFail();
+        });
+        return view('admin.post-view', compact('post'));
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -31,11 +30,5 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function getContentAttribute($value)
-    {
-        $plainText = strip_tags($value);
-        return Str::limit($plainText, 120, '...');
     }
 }
