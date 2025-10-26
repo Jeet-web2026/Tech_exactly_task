@@ -1,8 +1,5 @@
 <?php
 
-
-// Dashboard redirect routes
-
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +19,8 @@ Route::controller(DashboardController::class)->group(function () {
             Route::get('{slug}', 'adminPostView')->name('admin.users-post-view');
             Route::get('edit/{slug}', 'adminPostedit')->name('admin.users-post-edit');
             Route::get('delete/{uid}/{slug}', 'adminPostdelete')->name('admin.users-post-delete');
+
+            Route::post('update/{uid}/{slug}', 'adminPostupdate')->name('admin.users-post-update');
         });
     });
 });

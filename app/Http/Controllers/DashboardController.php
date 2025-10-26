@@ -108,4 +108,31 @@ class DashboardController extends Controller
         }
         return back()->with('success', 'Post deleted successfully.');
     }
+
+    public function adminPostedit(string $slug): View
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('admin.post-edit', compact('post'));
+    }
+
+    public function adminPostupdate(Request $request, int $uid, string $slug): RedirectResponse
+    {
+        $post = Post::where('id', $uid)->where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        $post->update([
+            'status' => $request->input('status'),
+        ]);
+
+        $totalPages = ceil(Post::count() / 5);
+        for ($i = 1; $i <= $totalPages; $i++) {
+            Cache::forget('admin_posts_page_' . $i);
+        }
+        Cache::forget("user_post_{$slug}");
+
+        return redirect()->back()->with('success', 'Post updated successfully.');
+    }
 }
