@@ -91,6 +91,55 @@ git clone <repo-url>
 cd <project-folder>
 
 ---
+
+Install dependencies:
+
+composer install
+npm install && npm run dev
+
+
+Copy .env.example to .env and configure database, mail, etc.
+
+Generate app key:
+
+php artisan key:generate
+
+
+Run migrations and seeders:
+
+php artisan migrate --seed
+
+
+Start the server:
+
+php artisan serve
+
+
+⚠️ Note: .env file is required. Copy from .env.example and update database credentials.
+
+Key Features
+
+Posts and comments management with Eloquent ORM
+
+Soft deletes for posts and comments
+
+Caching for posts and comments for performance
+
+Admin panel with statistics (users, posts, comments)
+
+Middleware for logging user activities and role verification
+
+Unit tests for models, controllers, and middleware
+
+Admin Panel
+
+Access restricted via middleware
+
+Dashboard shows total users, posts, and comments
+
+CRUD operations for all users and posts
+
+
 ## Evaluation Notes
 
 Proper use of Laravel features and Eloquent ORM
