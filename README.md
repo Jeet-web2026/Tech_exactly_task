@@ -89,3 +89,30 @@ tests/
 ```bash
 git clone <repo-url>
 cd <project-folder>
+
+---
+## Evaluation Notes
+
+Proper use of Laravel features and Eloquent ORM
+
+Optimized queries and eager loading applied
+
+Role-based access and policies ensure security
+
+Modular structure for maintainability and scalability
+
+
+---
+
+✅ **Tips to make it even better on GitHub:**  
+
+1. Save the file as **`README.md`** (not `.txt`)  
+2. Use **Markdown syntax** for headers (`#`, `##`), code blocks (triple backticks), and lists (`-`)  
+3. Add **screenshots in a folder named `screenshots`** and reference them in Markdown  
+4. Add **badges** for Laravel, PHP, MySQL, and License  
+
+---
+
+If you want, I can **recreate your current README exactly in this styled format** and **include placeholders for screenshots** so it will look polished directly on GitHub.  
+
+Do you want me to do that?
