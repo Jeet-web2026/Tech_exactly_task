@@ -4,24 +4,26 @@
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
             <div class="main-view-content md:col-span-2">
                 @forelse($Posts as $post)
-                <div class="relative rounded overflow-hidden shadow-lg">
-                    <div class="w-full shadow-lg">
-                        <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-125 object-cover">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
-                        <p class="text-sm tracking-widest text-gray-300 mb-2 capitalize">{{ $post->category }}</p>
-                        <h2 class="text-3xl font-bold text-white mb-3">{{ $post->title }}</h2>
-                        <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
-                            <span class="flex items-center gap-1">
-                                <i class="ri-user-3-line"></i>
-                                {{ $post->user->fname . ' ' . $post->user->lname }}
-                            </span>
-                            <span>{{ $post->created_at }}</span>
-                            <span>No Comments</span>
+                <a href="{{ route('home.post', ['slug' => $post->slug, 'id' => $post->id]) }}">
+                    <div class="relative rounded overflow-hidden shadow-lg">
+                        <div class="w-full shadow-lg">
+                            <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-125 object-cover">
                         </div>
-                        <p class="text-gray-300 text-sm leading-relaxed">{{ $post->content }}</p>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
+                            <p class="text-sm tracking-widest text-gray-300 mb-2 capitalize">{{ $post->category }}</p>
+                            <h2 class="text-3xl font-bold text-white mb-3">{{ $post->title }}</h2>
+                            <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
+                                <span class="flex items-center gap-1">
+                                    <i class="ri-user-3-line"></i>
+                                    {{ $post->user->fname . ' ' . $post->user->lname }}
+                                </span>
+                                <span>{{ $post->created_at }}</span>
+                                <span>No Comments</span>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">{{ $post->content }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 @empty
                 <div class="relative rounded overflow-hidden shadow-lg">
                     <div class="w-full shadow-lg">
@@ -43,13 +45,17 @@
                 </div>
                 @endforelse
             </div>
-            <div class="space-y-6 bg-white p-5 rounded shadow-lg">
-                <img src="{{ $singlePost->image }}" alt="Apple Store" class="w-full h-40 object-cover rounded-lg">
+            <div class="bg-white p-5 rounded shadow-lg flex flex-col gap-5">
+                <a href="{{ route('home.post', ['slug' => $singlePost->slug, 'id' => $singlePost->id]) }}">
+                    <img src="{{ $singlePost->image }}" alt="{{ $singlePost->title }}" class="w-full h-40 object-cover rounded-lg">
+                </a>
                 @forelse($secondaryPost as $post)
-                <div class="space-y-1.5">
-                    <p class="text-xs uppercase text-blue-500 font-semibold tracking-widest">{{ $post->category }}</p>
-                    <h3 class="text-gray-800 font-semibold">{{ Str::limit(strip_tags($post->title), 50, '...') }}</h3>
-                </div>
+                <a href="{{ route('home.post', ['slug' => $post->slug, 'id' => $post->id]) }}">
+                    <div class="space-y-1.5">
+                        <p class="text-xs uppercase text-blue-500 font-semibold tracking-widest">{{ $post->category }}</p>
+                        <h3 class="text-gray-800 font-semibold">{{ Str::limit(strip_tags($post->title), 50, '...') }}</h3>
+                    </div>
+                </a>
                 @empty
                 <div class="space-y-2">
                     <p class="text-xs uppercase text-blue-500 font-semibold tracking-widest">Null</p>
@@ -74,19 +80,21 @@
 
                 <div class="editors-pick-showcase">
                     @forelse($Posts as $post)
-                    <div class="px-4">
-                        <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition h-64">
-                            <div class="relative">
-                                <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-44 object-cover">
-                                <span class="absolute top-2 left-2 bg-gray-800 text-white text-xs px-2 py-1 rounded">EDITORS PICK</span>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="text-gray-800 font-semibold text-sm leading-snug">
-                                    {{ Str::limit(strip_tags($post->content), 50, '...') }}
-                                </h3>
+                    <a href="{{ route('home.post', ['slug' => $post->slug, 'id' => $post->id]) }}">
+                        <div class="px-4">
+                            <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition h-64">
+                                <div class="relative">
+                                    <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-44 object-cover">
+                                    <span class="absolute top-2 left-2 bg-gray-800 text-white text-xs px-2 py-1 rounded">EDITORS PICK</span>
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-gray-800 font-semibold text-sm leading-snug">
+                                        {{ Str::limit(strip_tags($post->content), 50, '...') }}
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     @empty
                     <div class="px-4">
                         <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition h-64">
@@ -136,26 +144,28 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2 space-y-6">
                     @forelse($techPosts as $post)
-                    <article class="flex flex-col md:flex-row gap-4 border-b border-gray-200 pb-4">
-                        <img
-                            src="{{ $post->image }}"
-                            alt="{{ $post->title }}"
-                            class="w-full md:w-48 h-32 object-cover rounded shdow-sm" />
-                        <div>
-                            <span class="text-sm text-blue-600 font-medium uppercase">{{ $post->category }}</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-1">
-                                {{ $post->title }}
-                            </h3>
-                            <p class="text-sm text-gray-600 mt-2">
-                                {{ Str::limit(strip_tags($post->content), 180, '...') }}
-                            </p>
-                            <div class="flex items-center text-xs text-gray-500 mt-2 space-x-2">
-                                <span class="flex items-center gap-1"><i class="ri-user-3-line"></i> {{ $post->user->fname }}</span>
-                                <span>•</span>
-                                <span>{{ $post->created_at }}</span>
+                    <a href="{{ route('home.post', ['slug' => $post->slug, 'id' => $post->id]) }}">
+                        <article class="flex flex-col md:flex-row gap-4 border-b border-gray-200 pb-4">
+                            <img
+                                src="{{ $post->image }}"
+                                alt="{{ $post->title }}"
+                                class="w-full md:w-48 h-32 object-cover rounded shdow-sm" />
+                            <div>
+                                <span class="text-sm text-blue-600 font-medium uppercase">{{ $post->category }}</span>
+                                <h3 class="text-lg font-semibold text-gray-900 mt-1">
+                                    {{ $post->title }}
+                                </h3>
+                                <p class="text-sm text-gray-600 mt-2">
+                                    {{ Str::limit(strip_tags($post->content), 180, '...') }}
+                                </p>
+                                <div class="flex items-center text-xs text-gray-500 mt-2 space-x-2">
+                                    <span class="flex items-center gap-1"><i class="ri-user-3-line"></i> {{ $post->user->fname }}</span>
+                                    <span>•</span>
+                                    <span>{{ $post->created_at }}</span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </a>
                     @empty
                     <article class="flex flex-col md:flex-row gap-4 border-b border-gray-200 pb-4">
                         <img
@@ -179,14 +189,16 @@
                     </article>
                     @endforelse
                 </div>
-                <aside class="space-y-8">
-                    <div class="bg-[url('{{ $secondaryTechPost->image }}')] rounded p-4 flex flex-col items-center text-center bg-no-repeat bg-cover bg-center h-115 flex flex-col items-center text-center justify-center">
-                        <h4 class="text-2xl font-semibold text-white">{{ $secondaryTechPost->title }}</h4>
-                        <p class="text-base text-white mt-2">
-                            {{ Str::limit(strip_tags($secondaryTechPost->content), 70, '...') }}
-                        </p>
-                    </div>
-                </aside>
+                <a href="{{ route('home.post', ['slug' => $secondaryTechPost->slug, 'id' => $secondaryTechPost->id]) }}">
+                    <aside class="space-y-8">
+                        <div class="bg-[url('{{ $secondaryTechPost->image }}')] rounded p-4 flex flex-col items-center text-center bg-no-repeat bg-cover bg-center h-115 flex flex-col items-center text-center justify-center">
+                            <h4 class="text-2xl font-semibold text-white">{{ $secondaryTechPost->title }}</h4>
+                            <p class="text-base text-white mt-2">
+                                {{ Str::limit(strip_tags($secondaryTechPost->content), 70, '...') }}
+                            </p>
+                        </div>
+                    </aside>
+                </a>
             </div>
         </div>
     </section>
