@@ -39,3 +39,53 @@ It provides:
 
 ## File Structure
 
+app/
+├─ Http/
+│ ├─ Controllers/ # Controllers for posts, comments, and users
+│ ├─ Middleware/ # Custom middleware for role checks and logging
+├─ Models/ # Eloquent models (User, Post, Comment)
+├─ Policies/ # Policies for user permissions
+├─ Services/ # Business logic and strategy pattern
+config/
+database/
+resources/
+routes/
+tests/
+
+
+---
+
+## Password Rules & Validation
+
+- Minimum **8 characters**  
+- Must include **uppercase, lowercase, number, and special character**  
+- Prevents using **common or compromised passwords**  
+- Form request validation ensures **secure registration and login**  
+- Users must provide **password confirmation**  
+
+---
+
+## Authentication & Roles
+
+- Built using **Laravel’s authentication system**  
+- **Regular Users**: Can manage their own posts and comments  
+- **Admins**: Full access to all posts and users  
+- Access controlled via **policies** and **middleware**  
+
+---
+
+## Strategy Pattern for Post-Login Redirection
+
+- Directs users after login based on their role:  
+  - Admin → Admin dashboard  
+  - Regular User → User dashboard  
+- Fully modular for adding future roles  
+
+---
+
+## Running the Application
+
+1. Clone the repository:  
+```bash
+git clone <repo-url>
+cd <project-folder>
