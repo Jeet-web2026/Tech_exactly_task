@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -59,6 +60,7 @@ class AuthController extends Controller
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
+        Cache::flush();
 
         return back()->with('success', 'Logged out successfully!');
     }

@@ -51,6 +51,10 @@ class DashboardController extends Controller
     {
         $user = User::findOrFail($uid);
         $user->delete();
+        $totalPages = ceil(User::count() / 6);
+        for ($i = 1; $i <= $totalPages; $i++) {
+            Cache::forget('admin_users_page_' . $i);
+        }
         return back()->with('success', 'User deleted successfully.');
     }
 
@@ -88,5 +92,16 @@ class DashboardController extends Controller
             return Post::where('slug', $slug)->firstOrFail();
         });
         return view('admin.post-view', compact('post'));
+    }
+
+    public function adminPostdelete(int $uid, string $slug): RedirectResponse
+    {
+        $post = Post::where('id', $uid)->where('slug', $slug)->firstOrFail();
+        $post->delete();
+        $totalPages = ceil(Post::count() / 5);
+        for ($i = 1; $i <= $totalPages; $i++) {
+            Cache::forget('admin_posts_page_' . $i);
+        }
+        return back()->with('success', 'Post deleted successfully.');
     }
 }
