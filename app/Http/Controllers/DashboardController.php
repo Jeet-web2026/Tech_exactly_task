@@ -83,6 +83,10 @@ class DashboardController extends Controller
         if (!$user) {
             return redirect()->back()->with('error', 'Failed to update user details.');
         }
+        $totalPages = ceil(User::count() / 6);
+        for ($i = 1; $i <= $totalPages; $i++) {
+            Cache::forget('admin_users_page_' . $i);
+        }
         return redirect()->back()->with('success', 'User details updated successfully.');
     }
 
