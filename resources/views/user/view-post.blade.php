@@ -8,11 +8,27 @@
                 <span>|</span>
                 <i class="ri-calendar-check-line"></i> {{ $post->created_at }}
                 <span>|</span>
-                <i class="ri-message-2-line me-1"></i>Comments: {{ $post->category }}
+                <i class="ri-message-2-line me-1"></i>Comments: {{ $post->comments->count() }}
                 <span>|</span>
                 <span class="bg-gray-100 border border-gray-300 px-2 rounded">{{ $post->category }}</span>
             </div>
             <p class="text-base text-gray-800">{!! $post->content !!}</p>
+        </section>
+        <section class="max-w-7xl mx-auto bg-white shadow-sm rounded mt-5 p-8">
+            @forelse ($post->comments as $comment)
+            <div class="border-b border-gray-200 pb-3 mb-3">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <i class="ri-user-3-line"></i>
+                    <span>{{ $comment->user->fname ?? 'Anonymous' }} {{ $comment->user->lname ?? '' }}</span>
+                    <span>|</span>
+                    <i class="ri-calendar-check-line"></i>
+                    <span>{{ $comment->created_at->format('M d, Y') }}</span>
+                </div>
+                <p class="mt-2 text-gray-800">{{ $comment->comment_body }}</p>
+            </div>
+            @empty
+            <p class="text-gray-500">No comments yet. Be the first to comment!</p>
+            @endforelse
         </section>
         @guest
         <section class="max-w-7xl mx-auto bg-white shadow-sm rounded mt-3 p-8">

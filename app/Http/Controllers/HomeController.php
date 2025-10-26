@@ -49,7 +49,7 @@ class HomeController extends Controller
         $cacheKey = "post_{$id}_{$slug}";
 
         $post = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($id, $slug) {
-            return Post::with('user')->where('id', $id)
+            return Post::with(['user', 'comments.user'])->where('id', $id)
                 ->whereHas('user')
                 ->where('slug', $slug)
                 ->firstOrFail();
@@ -63,12 +63,16 @@ class HomeController extends Controller
             'comment' => 'required'
         ]);
 
-        $comments = Comment::updateOrCreate([
-            'post_id' => $id
-        ], [
+        $comments = Comment::create([
+            'post_id' => $id,
             'comment_body' => $request->comment,
             'user_id' => Auth::id()
         ]);
+
+        $post = Post::find($id);
+        if ($post) {
+            Cache::forget("post_{$post->id}_{$post->slug}");
+        }
 
         if (empty($comments)) {
             return back()->with('error', 'Something went wrong!');
