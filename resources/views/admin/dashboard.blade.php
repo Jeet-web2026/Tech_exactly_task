@@ -14,7 +14,7 @@
         </a>
         <div class="shadow-md border border-gray-200 p-5 rounded">
             <h3 class="text-xl font-semibold"><i class="ri-edit-2-line me-2"></i>Total Comments</h3>
-            <h2 class="text-3xl font-semibold">{{ $user }}</h2>
+            <h2 class="text-3xl font-semibold">{{ $comments }}</h2>
         </div>
     </div>
 </x-DashboardLayout>

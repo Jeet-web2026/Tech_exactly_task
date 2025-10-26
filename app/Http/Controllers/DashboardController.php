@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -17,7 +18,8 @@ class DashboardController extends Controller
     {
         $user = User::where('user_type', 'user')->count();
         $posts = Post::count();
-        return view('admin.dashboard', compact('user', 'posts'));
+        $comments = Comment::count();
+        return view('admin.dashboard', compact('user', 'posts', 'comments'));
     }
 
     public function adminPosts(): View

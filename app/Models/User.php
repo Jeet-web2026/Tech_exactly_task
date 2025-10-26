@@ -40,9 +40,4 @@ class User extends Authenticatable
         }
         return parent::getAttribute($key);
     }
-
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
 }
