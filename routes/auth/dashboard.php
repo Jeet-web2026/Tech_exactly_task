@@ -16,5 +16,12 @@ Route::controller(DashboardController::class)->group(function () {
         Route::get('users-delete/{uid}', 'Userdelete')->name('admin.users-delete');
         Route::get('users-edit/{uid}', 'Useredit')->name('admin.users-edit');
         Route::post('users-details-save/{uid}', 'Userdetailssave')->name('admin.users-save');
+
+        // CRUD routes for admin posts manage
+        Route::prefix('post')->group(function () {
+            Route::get('{slug}', 'adminPostView')->name('admin.users-post-view');
+            Route::get('edit/{slug}', 'adminPostedit')->name('admin.users-post-edit');
+            Route::get('delete/{uid}/{slug}', 'adminPostdelete')->name('admin.users-post-delete');
+        });
     });
 });

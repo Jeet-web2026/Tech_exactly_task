@@ -22,10 +22,11 @@ class PostFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id ?? 1,
             'slug' => Str::slug($title) . '-' . Str::random(5),
-            'status' => fake()->randomElement(['active', 'inactive', 'draft']),
+            'status' => fake()->randomElement(['active', 'inactive']),
             'category' => fake()->randomElement(['Tech', 'Business', 'Education', 'Lifestyle', 'Health']),
             'title' => $title,
             'content' => fake()->paragraphs(3, true),
+            'image' => fake()->imageUrl(800, 600, 'tech', true),
         ];
     }
 }

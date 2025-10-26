@@ -37,20 +37,20 @@
                             {{ $post->created_at }}
                         </td>
                         <td class="px-6 py-4 flex flex-row gap-2">
-                            <a href="{{ route('admin.users-edit', $post->id) }}" class="bg-green-700 px-2 py-1 rounded text-white">
+                            <a href="{{ route('admin.users-post-view', $post->slug) }}" class="bg-green-700 px-2 py-1 rounded text-white">
                                 <i class="ri-eye-line text-lg"></i>
                             </a>
-                            <a href="{{ route('admin.users-edit', $post->id) }}" class="bg-blue-700 px-2 py-1 rounded text-white">
+                            <a href="{{ route('admin.users-post-edit', $post->slug) }}" class="bg-blue-700 px-2 py-1 rounded text-white">
                                 <i class="ri-edit-box-line text-lg"></i>
                             </a>
-                            <a href="{{ route('admin.users-delete', $post->id) }}" class="bg-red-700 px-2 py-1 rounded text-white">
+                            <a href="{{ route('admin.users-post-delete', ['uid' => $post->id, 'slug' => $post->slug]) }}" class="bg-red-700 px-2 py-1 rounded text-white">
                                 <i class="ri-delete-bin-5-line text-lg"></i>
                             </a>
                         </td>
                     </tr>
                     @empty
                     <tr class="bg-white dark:bg-gray-100 dark:border-gray-700 border-gray-200">
-                        <td class="px-6 py-4 text-black border-r border-gray-200 text-center" colspan="4">
+                        <td class="px-6 py-4 text-black border-r border-gray-200 text-center" colspan="5">
                             No post found!
                         </td>
                     </tr>

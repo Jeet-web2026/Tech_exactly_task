@@ -17,6 +17,7 @@ class Post extends Model
         'category',
         'title',
         'content',
+        'image'
     ];
 
     public function getAttribute($key)
