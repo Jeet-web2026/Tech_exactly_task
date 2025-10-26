@@ -27,11 +27,14 @@ class HomeController extends Controller
                 ->get(['user_id', 'id', 'title', 'content', 'category', 'image', 'created_at']);
         });
 
+        $secondaryTechPost = $techPosts->first();
+
         return view('index', compact(
             'Posts',
             'singlePost',
             'secondaryPost',
-            'techPosts'
+            'techPosts',
+            'secondaryTechPost'
         ));
     }
 }
