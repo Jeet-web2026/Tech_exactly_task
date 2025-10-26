@@ -8,6 +8,11 @@ Route::controller(HomeController::class)->group(function () {
 
     // Post manage routes
     Route::get('post/{slug}/{id}', 'ManagePost')->name('home.post');
+
+    // Comments manage routes
+    Route::middleware('auth')->group(function () {
+        Route::post('comment/{id}', 'ManageComment')->name('home.comment');
+    });
 });
 
 require __DIR__ . '/auth/auth.php';

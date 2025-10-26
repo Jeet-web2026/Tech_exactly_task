@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
@@ -51,5 +55,24 @@ class HomeController extends Controller
                 ->firstOrFail();
         });
         return view('user.view-post', compact('post'));
+    }
+
+    public function ManageComment(Request $request, int $id): RedirectResponse
+    {
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        $comments = Comment::updateOrCreate([
+            'post_id' => $id
+        ], [
+            'comment_body' => $request->comment,
+            'user_id' => Auth::id()
+        ]);
+
+        if (empty($comments)) {
+            return back()->with('error', 'Something went wrong!');
+        }
+        return back()->with('success', 'Comment added successfully!');
     }
 }

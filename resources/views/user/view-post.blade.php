@@ -8,6 +8,8 @@
                 <span>|</span>
                 <i class="ri-calendar-check-line"></i> {{ $post->created_at }}
                 <span>|</span>
+                <i class="ri-message-2-line me-1"></i>Comments: {{ $post->category }}
+                <span>|</span>
                 <span class="bg-gray-100 border border-gray-300 px-2 rounded">{{ $post->category }}</span>
             </div>
             <p class="text-base text-gray-800">{!! $post->content !!}</p>
@@ -21,5 +23,14 @@
             </div>
         </section>
         @endguest
+        @auth
+        <section class="max-w-7xl mx-auto bg-white shadow-sm rounded mt-3 p-8">
+            <form action="{{ route('home.comment', $post->id) }}" method="post">
+                @csrf
+                <textarea name="comment" id="comment" value="{{ old('comment') }}" placeholder="Comment here..." class="w-full border border-gray-400 outline-none rounded p-2 h-24 mb-2"></textarea>
+                <button type="submit" class="bg-blue-700 px-5 py-1.5 rounded text-white cursor-pointer">Save</button>
+            </form>
+        </section>
+        @endauth
     </main>
 </x-BaseComponent>
