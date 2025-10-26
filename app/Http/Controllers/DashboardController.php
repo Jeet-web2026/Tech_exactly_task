@@ -32,7 +32,13 @@ class DashboardController extends Controller
     }
     public function adminUsers(): View
     {
-        $users = User::where('user_type', 'user')->paginate(6);
+        $page = request()->get('page', 1);
+        $cacheKey = 'admin_users_page_' . $page;
+
+        $users = Cache::remember($cacheKey, now()->addMinutes(10), function () {
+            return User::where('user_type', 'user')
+                ->paginate(6);
+        });
         return view('admin.users', compact('users'));
     }
 

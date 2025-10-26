@@ -73,6 +73,7 @@
                         </tr>
                         <tr class="bg-white dark:bg-gray-100 border-b border-gray-200 text-base">
                             <td class="px-6 py-3 font-medium w-1/4 text-gray-900 whitespace-nowrap text-black border-r border-gray-200">
+                                <a href="{{ route('admin.users') }}" class="bg-gray-500 px-8 py-2.5 rounded text-white cursor-pointer">Back</a>
                                 <button type="submit" class="bg-blue-700 px-8 py-2 rounded text-white cursor-pointer">Save</button>
                             </td>
                             <td class="px-6 py-3 w-3/4 text-black border-r border-gray-200 flex flex-row gap-6"></td>
