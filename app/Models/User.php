@@ -36,7 +36,7 @@ class User extends Authenticatable
     public function getAttribute($key)
     {
         if ($key === 'created_at' && isset($this->attributes[$key])) {
-            return date('d-m-Y, H:m', strtotime($this->attributes[$key]));
+            return date('d-m-Y, H:i', strtotime($this->attributes[$key]));
         }
         return parent::getAttribute($key);
     }

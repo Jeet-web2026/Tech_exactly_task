@@ -9,7 +9,7 @@
         <a href="{{ route('admin.posts') }}">
             <div class="shadow-md border border-gray-200 p-5 rounded">
                 <h3 class="text-xl font-semibold"><i class="ri-sticky-note-add-line me-2"></i>Total Posts</h3>
-                <h2 class="text-3xl font-semibold">{{ $user }}</h2>
+                <h2 class="text-3xl font-semibold">{{ $posts }}</h2>
             </div>
         </a>
         <div class="shadow-md border border-gray-200 p-5 rounded">

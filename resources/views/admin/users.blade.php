@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     @forelse($users as $user)
-                    <tr class="bg-white dark:bg-gray-100 dark:border-gray-700 border-gray-200">
+                    <tr class="bg-white dark:bg-gray-100 border-gray-200 border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-black border-r border-gray-200">
                             {{ $user->fname . ' ' . $user->lname }}
                         </th>
@@ -48,6 +48,9 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="flex justify-start items-center mt-3">
+                {{ $users->links('pagination::tailwind') }}
+            </div>
         </div>
     </div>
 </x-DashboardLayout>

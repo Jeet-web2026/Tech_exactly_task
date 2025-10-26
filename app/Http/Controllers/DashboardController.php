@@ -3,26 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
     public function adminDashboard(): View
     {
         $user = User::where('user_type', 'user')->count();
-        return view('admin.dashboard', compact('user'));
+        $posts = Post::count();
+        return view('admin.dashboard', compact('user', 'posts'));
     }
 
     public function adminPosts(): View
     {
-        return view('admin.post');
+        $page = request()->get('page', 1);
+        $cacheKey = 'admin_posts_page_' . $page;
+
+        $posts = Cache::remember($cacheKey, now()->addMinutes(10), function () {
+            return Post::with('user')
+                ->paginate(5);
+        });
+        return view('admin.post', compact('posts'));
     }
     public function adminUsers(): View
     {
-        $users = User::where('user_type', 'user')->get();
+        $users = User::where('user_type', 'user')->paginate(6);
         return view('admin.users', compact('users'));
     }
 
