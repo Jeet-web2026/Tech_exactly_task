@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -36,5 +37,27 @@ class DashboardController extends Controller
     {
         $userDetail = User::findOrFail($uid);
         return view('admin.user-edit', compact('userDetail'));
+    }
+
+    public function Userdetailssave(UserEditRequest $request, int $id): RedirectResponse
+    {
+        $permissions = [
+            'post' => in_array('post', $request->permissions ?? []),
+            'comment' => in_array('comment', $request->permissions ?? []),
+        ];
+        $user = User::updateOrCreate(
+            ['id' => $id],
+            [
+                'fname' => $request->input('fname'),
+                'lname' => $request->input('lname'),
+                'email' => $request->input('email'),
+                'status' => $request->input('status'),
+                'permissions' => $permissions,
+            ]
+        );
+        if (!$user) {
+            return redirect()->back()->with('error', 'Failed to update user details.');
+        }
+        return redirect()->back()->with('success', 'User details updated successfully.');
     }
 }

@@ -15,5 +15,6 @@ Route::controller(DashboardController::class)->group(function () {
         // CRUD routes for admin users manage
         Route::get('users-delete/{uid}', 'Userdelete')->name('admin.users-delete');
         Route::get('users-edit/{uid}', 'Useredit')->name('admin.users-edit');
+        Route::post('users-details-save/{uid}', 'Userdetailssave')->name('admin.users-save');
     });
 });
