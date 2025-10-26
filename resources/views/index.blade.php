@@ -15,7 +15,7 @@
                             <div class="flex items-center text-gray-300 text-sm space-x-4 mb-3">
                                 <span class="flex items-center gap-1">
                                     <i class="ri-user-3-line"></i>
-                                    {{ $post->user->fname . ' ' . $post->user->lname }}
+                                    {{ $post->user?->fname ?? 'Unknown' }} {{ $post->user?->lname ?? '' }}
                                 </span>
                                 <span>{{ $post->created_at }}</span>
                                 <span>No Comments</span>
@@ -145,11 +145,11 @@
                 <div class="lg:col-span-2 space-y-6">
                     @forelse($techPosts as $post)
                     <a href="{{ route('home.post', ['slug' => $post->slug, 'id' => $post->id]) }}">
-                        <article class="flex flex-col md:flex-row gap-4 border-b border-gray-200 pb-4">
+                        <article class="flex flex-col md:flex-row gap-4 border-b border-gray-200 pb-4 mt-2">
                             <img
                                 src="{{ $post->image }}"
                                 alt="{{ $post->title }}"
-                                class="w-full md:w-48 h-32 object-cover rounded shdow-sm" />
+                                class="min-w-48 h-32 object-cover rounded shdow-sm" />
                             <div>
                                 <span class="text-sm text-blue-600 font-medium uppercase">{{ $post->category }}</span>
                                 <h3 class="text-lg font-semibold text-gray-900 mt-1">
@@ -159,7 +159,7 @@
                                     {{ Str::limit(strip_tags($post->content), 180, '...') }}
                                 </p>
                                 <div class="flex items-center text-xs text-gray-500 mt-2 space-x-2">
-                                    <span class="flex items-center gap-1"><i class="ri-user-3-line"></i> {{ $post->user->fname }}</span>
+                                    <span class="flex items-center gap-1"><i class="ri-user-3-line"></i> {{ $post->user?->fname ?? 'Unknown' }}</span>
                                     <span>•</span>
                                     <span>{{ $post->created_at }}</span>
                                 </div>

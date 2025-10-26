@@ -11,20 +11,22 @@ class HomeController extends Controller
     public function index(): View
     {
         $Posts = Cache::remember('all_latest_posts', now()->addMinutes(5), function () {
-            return Post::with('user:id,fname,lname')
+            return Post::with('user')
+                ->where('status', 'active')
                 ->latest()
                 ->take(5)
-                ->get(['user_id', 'id', 'title', 'content', 'category', 'image', 'created_at', 'slug']);
+                ->get();
         });
 
         $singlePost = $Posts->first();
         $secondaryPost = $Posts->take(4);
         $techPosts = Cache::remember('all_latest_tech_news', now()->addMinutes(5), function () {
-            return Post::with('user:id,fname,lname')
+            return Post::with('user')
                 ->where('category', 'Tech')
+                ->where('status', 'active')
                 ->latest()
                 ->take(3)
-                ->get(['user_id', 'id', 'title', 'content', 'category', 'image', 'created_at', 'slug']);
+                ->get();
         });
 
         $secondaryTechPost = $techPosts->first();
@@ -43,7 +45,8 @@ class HomeController extends Controller
         $cacheKey = "post_{$id}_{$slug}";
 
         $post = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($id, $slug) {
-            return Post::where('id', $id)
+            return Post::with('user')->where('id', $id)
+                ->whereHas('user')
                 ->where('slug', $slug)
                 ->firstOrFail();
         });

@@ -25,7 +25,7 @@
                     @forelse($posts as $post)
                     <tr class="bg-white dark:bg-gray-100 border-gray-200 border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-black border-r border-gray-200">
-                            {{ $post->user->fname . ' ' . $post->user->lname }}
+                            {{ $post->user?->fname ?? 'Unknown' }} {{ $post->user?->lname ?? '' }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 text-black border-r border-gray-200">
                             {{ $post->title }}

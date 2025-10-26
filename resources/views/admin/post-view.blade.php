@@ -4,7 +4,7 @@
             <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded mb-4">
             <h2 class="text-2xl font-semibold mb-4">{{ $post->title }}</h2>
             <p class="text-gray-800 mb-4">{{ $post->content }}</p>
-            <p class="text-sm text-gray-700"><i class="ri-user-3-line"></i> {{ $post->user->fname . ' ' . $post->user->lname }} on <i class="ri-calendar-check-line"></i> {{ $post->created_at }}</p>
+            <p class="text-sm text-gray-700"><i class="ri-user-3-line"></i> {{ $post->user?->fname ?? 'Unknown' }} {{ $post->user?->lname ?? '' }} on <i class="ri-calendar-check-line"></i> {{ $post->created_at }}</p>
             <p class="capitalize mt-2 mb-3">Status: 
                 @if($post->status === 'active')
                 <span class="text-green-800">{{ $post->status }}</span>
